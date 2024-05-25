@@ -1,5 +1,6 @@
 package com.fiecl.book.role;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fiecl.book.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,6 +27,7 @@ public class Role {
     private String name;
 
     @ManyToMany(mappedBy = "roles")
+    @JsonIgnore // Just to ignore the serialization of this.
     private List<User> users;
 
     @CreatedDate
