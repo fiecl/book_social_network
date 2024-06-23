@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@EnableJpaAuditing
+@EnableJpaAuditing(auditorAwareRef = "auditorAware") // NOTE: auditorAware - from the 'BeansConfig' class in 'config' package
 @EnableAsync
 public class BookNetworkApiApplication {
 
@@ -20,7 +20,6 @@ public class BookNetworkApiApplication {
 	}
 
 	// To initialize the user (to prevent the error: "ROLE USER was not initialized" when running the SpringBoot app)
-
 	@Bean
 	public CommandLineRunner runner(RoleRepository roleRepository) {
 		return args -> {
